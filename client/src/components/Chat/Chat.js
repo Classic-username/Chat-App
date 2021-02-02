@@ -16,7 +16,7 @@ const Chat = ({ location }) => {
     useEffect(() => {
         const { name, room } = queryString.parse(location.search);
 
-        socket = io(ENDPOINT);
+        socket = io(ENDPOINT, { transports: ['websocket', 'polling', 'flashsocket'] });
 
         setName(name);
         setRoom(room);
@@ -39,7 +39,9 @@ const Chat = ({ location }) => {
     }, [messages])
 
     const sendMessage = (event) => {
+        console.log(event, 'does this exist?')
         event.preventDefault();
+        console.log(socket)
 
         if(message) {
             socket.emit('sendMessage', message, () => setMessage(''))
@@ -51,7 +53,8 @@ const Chat = ({ location }) => {
     return(
         <div className="outerContainer">
             <div className="container">
-                <input value={message} onChange={(event) => setMessage(event.target.value)} onKeyPress={event => event.key === "Enter" ? sendMessage(event) : null}/>
+                <InfoBar />
+                {/* <input value={message} onChange={(event) => setMessage(event.target.value)} onKeyPress={event => event.key === "Enter" ? sendMessage(event) : null}/> */}
             </div>
         </div>
     )
