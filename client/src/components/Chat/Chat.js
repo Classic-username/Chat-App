@@ -58,7 +58,7 @@ const Chat = ({ location }) => {
         <div className="outerContainer">
             <div className="container">
                 <InfoBar room={room} />
-                <Messages/>
+                <Messages messages={messages} name={name}/>
                 <Input message={message} setMessage={setMessage} sendMessage={sendMessage}/>
                 {/* <input value={message} onChange={(event) => setMessage(event.target.value)} onKeyPress={event => event.key === "Enter" ? sendMessage(event) : null}/> */}
             </div>
