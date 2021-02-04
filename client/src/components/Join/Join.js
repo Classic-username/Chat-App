@@ -10,9 +10,11 @@ const Join = () => {
     const history = useHistory();
 
     let enterPress = (event) =>  {
+
         if(!name || !room) {
             return null
         }
+        event.preventdefault()
         history.push(`/chat?name=${name}&room=${room}`)
     }
 
